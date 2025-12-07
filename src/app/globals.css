@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+:root {
+  /* Core Colors */
+  --background: #050505;
+  --foreground: #ededed;
+
+  /* Theme Colors */
+  --color-gold: #D4AF37;
+  --color-gold-glow: rgba(212, 175, 55, 0.5);
+  --color-neon-blue: #00F3FF;
+  --color-neon-pink: #FF00FF;
+
+  /* UI Elements */
+  --glass-surface: rgba(5, 5, 5, 0.7);
+  --glass-border: rgba(212, 175, 55, 0.3);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-gold: var(--color-gold);
+  --color-neon-blue: var(--color-neon-blue);
+  --color-neon-pink: var(--color-neon-pink);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden; /* Prevent scrolling on the infinite canvas container */
+}
+
+/* Custom Scrollbar for non-canvas elements */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold);
+  border-radius: 4px;
+}
+
+@keyframes slide-in-right {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fade-in-down {
+  from { transform: translate(-50%, -20px); opacity: 0; }
+  to { transform: translate(-50%, 0); opacity: 1; }
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in-down {
+  animation: fade-in-down 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Hide Tldraw Watermark / License Link */
+a[href*="tldraw.dev/community/license"],
+button[title*="license"],
+.tl-watermark {
+    display: none !important;
+}
