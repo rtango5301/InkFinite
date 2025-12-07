@@ -1,9 +1,8 @@
-import Editor from '@/components/Editor'
-
+import EditorWrapper from '@/components/EditorWrapper'
 export default function Home() {
   return (
     <main>
-      <Editor />
+      <EditorWrapper />
     </main>
   )
 }

@@ -84,6 +84,27 @@ src/
 │   └── Notification.tsx  # Toast notification system
 ```
 
+### Deployment (Vercel)
+
+The easiest way to deploy is to use the **Vercel Platform**.
+
+1.  **Push to GitHub**: Ensure your project is pushed to a GitHub repository.
+2.  **Import in Vercel**:
+    *   Go to [Vercel Dashboard](https://vercel.com/dashboard).
+    *   Click **"Add New..."** -> **"Project"**.
+    *   Find your repo (`InkFinite`) and click **Import**.
+3.  **Configure**:
+    *   Framework Preset: `Next.js` (Auto-detected).
+    *   Environment Variables: Add any if needed (none for base features).
+    *   Click **Deploy**.
+
+#### CI/CD Pipeline
+This project is configured for **Zero-Config CI/CD** with Vercel:
+*   **Preview Deployments**: Every time you push to a branch or open a Pull Request, Vercel automatically deploys a preview URL.
+*   **Production Deployment**: When a PR is merged to `main`, Vercel automatically deploys to production.
+
+We also included a **GitHub Action** (`.github/workflows/ci.yml`) that runs `lint` and `build` checks on every PR to ensure code quality before merging.
+
 ## 📚 Learning Resources
 
 If you want to learn more about the technologies used in this project, check out these resources:
