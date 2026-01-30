@@ -42,8 +42,7 @@ export function CustomToolbar() {
         if (!result) return
         const { svg } = result
 
-        const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
-        const png = await getSvgAsImage(svg, isSafari)
+        const png = await getSvgAsImage(svg)
 
         if (png) {
             const blob = await new Promise<Blob | null>((resolve) => png.toBlob(resolve))
@@ -71,7 +70,7 @@ export function CustomToolbar() {
     }
 
     // Helper to convert SVG to Image (simplified version of tldraw's internal export helper)
-    async function getSvgAsImage(svg: SVGSVGElement, isSafari: boolean) {
+    async function getSvgAsImage(svg: SVGSVGElement) {
         const clone = svg.cloneNode(true) as SVGSVGElement
         clone.setAttribute('width', svg.getAttribute('width')!)
         clone.setAttribute('height', svg.getAttribute('height')!)

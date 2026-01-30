@@ -42,7 +42,7 @@ export default function Editor() {
                 persistenceKey="infinite-canvas-v1"
                 shapeUtils={[MarkdownCardUtil]}
                 onMount={(editor) => {
-                    // @ts-ignore
+                    // @ts-expect-error - exposing editor to window for debugging
                     window.editor = editor
                 }}
             >

@@ -33,7 +33,7 @@ export class MarkdownCardUtil extends BaseBoxShapeUtil<IMarkdownCardShape> {
 	}
 
 	component(shape: IMarkdownCardShape) {
-        const { w, h, text } = shape.props
+        const { text } = shape.props
         const isEditing = this.editor.getEditingShapeId() === shape.id
 
 		return (
