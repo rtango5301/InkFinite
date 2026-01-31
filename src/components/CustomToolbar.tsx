@@ -70,23 +70,50 @@ export function CustomToolbar() {
     }
 
     // Helper to convert SVG to Image (simplified version of tldraw's internal export helper)
-    async function getSvgAsImage(svg: SVGSVGElement) {
+    async function getSvgAsImage(svg: SVGSVGElement): Promise<HTMLCanvasElement | null> {
         const clone = svg.cloneNode(true) as SVGSVGElement
-        clone.setAttribute('width', svg.getAttribute('width')!)
-        clone.setAttribute('height', svg.getAttribute('height')!)
+        const width = svg.getAttribute('width')
+        const height = svg.getAttribute('height')
+
+        if (!width || !height) {
+            console.error('SVG missing dimensions')
+            return null
+        }
+
+        clone.setAttribute('width', width)
+        clone.setAttribute('height', height)
 
         const svgData = new XMLSerializer().serializeToString(clone)
         const canvas = document.createElement('canvas')
         const ctx = canvas.getContext('2d')
+
+        if (!ctx) {
+            console.error('Failed to get canvas context')
+            return null
+        }
+
         const img = new Image()
 
         return new Promise<HTMLCanvasElement | null>((resolve) => {
+            const timeout = setTimeout(() => {
+                console.error('Image load timeout')
+                resolve(null)
+            }, 10000) // 10 second timeout
+
             img.onload = () => {
-                canvas.width = parseFloat(svg.getAttribute('width')!)
-                canvas.height = parseFloat(svg.getAttribute('height')!)
-                ctx?.drawImage(img, 0, 0)
+                clearTimeout(timeout)
+                canvas.width = parseFloat(width)
+                canvas.height = parseFloat(height)
+                ctx.drawImage(img, 0, 0)
                 resolve(canvas)
             }
+
+            img.onerror = (e) => {
+                clearTimeout(timeout)
+                console.error('Failed to load SVG as image:', e)
+                resolve(null)
+            }
+
             img.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgData)))
         })
     }
