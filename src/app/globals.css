@@ -67,3 +67,24 @@ button[title*="license"],
 .tl-watermark {
     display: none !important;
 }
+
+/* Tldraw Theme Customization */
+.tl-theme__dark {
+    --color-background: #050505;
+    --color-low: #1a1a1a;
+    --color-hint: #2a2a2a;
+    --color-overlay: rgba(5, 5, 5, 0.8);
+    --color-primary: #D4AF37;
+    --color-primary-highlight: #D4AF37;
+    --color-selection-stroke: #00F3FF;
+    --color-selection-fill: rgba(0, 243, 255, 0.1);
+}
+
+.tl-container {
+    background-color: #050505;
+}
+
+/* Custom Glow Effects for tldraw */
+.tl-shape-indicator {
+    filter: drop-shadow(0 0 5px var(--color-neon-blue));
+}
