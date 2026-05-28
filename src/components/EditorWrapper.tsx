@@ -1,6 +1,7 @@
 'use client'
 
 import dynamic from 'next/dynamic'
+import { useState } from 'react'
 import { ErrorBoundary } from './ErrorBoundary'
 
 const Editor = dynamic(() => import('./Editor'), {
@@ -16,9 +17,10 @@ const Editor = dynamic(() => import('./Editor'), {
 })
 
 export default function EditorWrapper() {
+  const [resetKey, setResetKey] = useState(0)
   return (
-    <ErrorBoundary>
-      <Editor />
+    <ErrorBoundary onReset={() => setResetKey((k) => k + 1)}>
+      <Editor key={resetKey} />
     </ErrorBoundary>
   )
 }

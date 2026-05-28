@@ -29,9 +29,6 @@ export class ErrorBoundary extends Component<Props, State> {
   handleReset = () => {
     // Clear potentially corrupted localStorage
     try {
-      localStorage.removeItem('TLDRAW_DOCUMENT_v1')
-      localStorage.removeItem('infinite-canvas-v1')
-      // Clear any other tldraw-related keys
       Object.keys(localStorage).forEach((key) => {
         if (key.startsWith('tldraw') || key.startsWith('TLDRAW')) {
           localStorage.removeItem(key)
