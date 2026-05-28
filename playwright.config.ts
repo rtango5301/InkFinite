@@ -14,12 +14,7 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: {
-        browserName: 'chromium',
-        launchOptions: {
-          executablePath: '/root/.cache/ms-playwright/chromium-1194/chrome-linux/chrome',
-        },
-      },
+      use: { browserName: 'chromium' },
     },
   ],
   webServer: {

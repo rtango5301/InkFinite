@@ -32,7 +32,7 @@ export class MarkdownCardUtil extends BaseBoxShapeUtil<IMarkdownCardShape> {
 		}
 	}
 
-	component(shape: IMarkdownCardShape) {
+	override component(shape: IMarkdownCardShape) {
         const { text } = shape.props
         const isEditing = this.editor.getEditingShapeId() === shape.id
 
@@ -67,14 +67,14 @@ export class MarkdownCardUtil extends BaseBoxShapeUtil<IMarkdownCardShape> {
                     />
                 ) : (
                     <div className="prose prose-invert prose-sm w-full h-full overflow-y-auto select-text">
-                        <ReactMarkdown>{text}</ReactMarkdown>
+                        <ReactMarkdown urlTransform={(url) => (url.startsWith('javascript:') ? '' : url)}>{text}</ReactMarkdown>
                     </div>
                 )}
 			</HTMLContainer>
 		)
 	}
 
-	indicator(shape: IMarkdownCardShape) {
+	override indicator(shape: IMarkdownCardShape) {
 		return (
 			<rect
 				width={shape.props.w}
